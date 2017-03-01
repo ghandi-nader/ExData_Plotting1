@@ -1,0 +1,7 @@
+d = read.table("household_power_consumption.txt",sep=";",header = TRUE,fill=FALSE,strip.white=TRUE)
+d$Date2 <- as.Date( as.character(d$Date), "%d/%m/%Y")
+x <- subset(d, Date2 >= "2007-02-01" &  Date2 <= "2007-02-02" )
+x$gap<-as.numeric(as.character(x$Global_active_power))
+png(filename="plot1.png",width=480, height=480,units = "px")
+hist(x$gap,ylim=c(0,1200), col="red",main="Global Active Power",xlab="Global Active Power (Kilowatts)")
+dev.off()
